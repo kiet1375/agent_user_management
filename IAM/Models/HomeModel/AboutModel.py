@@ -1,0 +1,5 @@
+
+
+class About():
+    title = ''
+    description = ''
