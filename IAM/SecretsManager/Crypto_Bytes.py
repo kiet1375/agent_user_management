@@ -9,14 +9,11 @@ def checkKey(key):
         return True
 
 def generateSecret():
-    system_random = random.SystemRandom()
-    size = system_random.randint(128, 256)
-    array = [size]
-    length = len(array)
+    secretsGenerator = secrets.SystemRandom()
+    size = int(secretsGenerator.randint(128, 256))
+    array = [256]
     j =0
-    for i in range(length):
-        if j == size-1:
-            j = 0
-        array[j] = system_random.randint(0, 26)
-        j = j + 1
+    for i in range(256):
+        array[j] = int(secretsGenerator.randint(0, 26))
+
     return array
