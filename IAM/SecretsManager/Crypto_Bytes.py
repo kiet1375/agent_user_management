@@ -10,10 +10,9 @@ def checkKey(key):
 
 def generateSecret():
     secretsGenerator = secrets.SystemRandom()
-    size = int(secretsGenerator.randint(128, 256))
-    array = [256]
-    j =0
-    for i in range(256):
-        array[j] = int(secretsGenerator.randint(0, 26))
-
+    array = [0] * 256
+    index =0
+    for i in range(len(array)):
+        array[index] = int(secretsGenerator.randint(0, 26))
+        index+=1
     return array
