@@ -1,8 +1,14 @@
 from django.urls import path, include
-from . Controllers.HomeController import home
+from .Controllers.HomeController import HomeController
+from . Controllers.UserController import UserController
+from . Controllers.LoginController import LoginController
 
 urlpatterns = [
-    path('', home.home, name='homeIAM'),
-    path('home', home.home, name='homeIAM'),
-    path('about', home.about, name='aboutIAM'),
+    path('', LoginController.login, name='loginIAM'),
+    path('home', HomeController.home, name='homeIAM'),
+    path('about', HomeController.about, name='aboutIAM'),
+    path('login', LoginController.login, name='loginIAM'),
+    path('validate', LoginController.loginPost, name = 'validate'),
+    path('logout', LoginController.logout, name = 'logout'),
+
 ]

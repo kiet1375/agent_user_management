@@ -1,15 +1,21 @@
+import requests
 from django.shortcuts import render
 from ...Models.HomeModel import HomeModel, AboutModel
 from ..Repository import Repository
-from ...SecretsManager import Crypto_Bytes, Vernam_Cipher
+from ...Controllers.AgentController import AgentController
+
 
 
 
 def home(request):
     model = HomeModel.Home()
     model = Repository.getHome(model)
-    context = {'title': model.title,
-               'description': model.description}
+    state = 'Log_off'
+    agents = AgentController.getAgents()
+    context = {'state': state,
+               'title': model.title,
+               'description': model.description,
+               'agents': agents}
     return render(request,'home.html', context)
 
 

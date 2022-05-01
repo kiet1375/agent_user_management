@@ -2,4 +2,4 @@
 
 class Home():
     title = ''
-    description = ''
+    __description = ''

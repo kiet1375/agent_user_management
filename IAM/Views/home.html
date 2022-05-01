@@ -7,4 +7,25 @@
 {% block body %}
     <h1>{{ title }}</h1>
     <p>{{ description }}.</p>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">?</th>
+          </tr>
+        </thead>
+    {% for agent in agents %}
+
+        <tbody>
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ agent.first_name }}</td>
+            <td>{{ agent.last_name}}</td>
+            <td> <a>Details |</a><a> Update |</a><a> Delete</a> </td>
+          </tr>
+        </tbody>
+    {% endfor %}
+</table>
 {% endblock %} 
