@@ -1,5 +1,5 @@
-import requests
-from django.shortcuts import render
+
+from django.shortcuts import render, redirect
 from ...Models.HomeModel import HomeModel, AboutModel
 from ..Repository import Repository
 from ...Controllers.AgentController import AgentController
@@ -8,15 +8,19 @@ from ...Controllers.AgentController import AgentController
 
 
 def home(request):
-    model = HomeModel.Home()
-    model = Repository.getHome(model)
-    state = 'Log_off'
-    agents = AgentController.getAgents()
-    context = {'state': state,
-               'title': model.title,
-               'description': model.description,
-               'agents': agents}
-    return render(request,'home.html', context)
+
+    if request.session.get('user_id') == None:
+        return redirect('https://agentusermanagement.herokuapp.com/')
+    else:
+        model = HomeModel.Home()
+        model = Repository.getHome(model)
+        state = 'Log_off'
+        agents = AgentController.getAgents()
+        context = {'state': state,
+                   'title': model.title,
+                   'description': model.description,
+                   'agents': agents}
+        return render(request,'home.html', context)
 
 
 def about(request):

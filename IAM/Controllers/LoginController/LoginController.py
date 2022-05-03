@@ -104,8 +104,7 @@ def loginPost(request):
             
          de = Vernam_Cipher.encryptOrDecrypt(T3, userModel.password)
          sa = ""
-         password = LoginForm.cleaned_data['password']
-         # adminHasLoggedIn12%!
+         
          for i in de:
             sa += str(chr(i))
          
@@ -113,7 +112,6 @@ def loginPost(request):
             request.session['user_id'] = userModel.user_id
             request.session['state'] = 'Logg_off'
             return redirect("https://agentusermanagement.herokuapp.com/home")
-            #return render(request,'home.html', {'state': 'Log_off'})
          else:
             return HttpResponsePermanentRedirect("https://agentusermanagement.herokuapp.com/?error")
 
