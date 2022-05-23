@@ -15,7 +15,6 @@ def getHome(model):
                                     host= Vernam_Cipher.decryptDbConnection('gt3(/6)3.7($%:9?njjrgup;&"zcuhkfd{c#qxl'))
 
     try:
-
         sql_select_Query = "select * from home"
         cursor = connection.cursor()
         cursor.execute(sql_select_Query)

@@ -1,0 +1,30 @@
+{% extends 'masterpage.html' %}
+
+{% block head %}
+    <title>{{ title }}</title>
+{% endblock %} 
+
+{% block body %}
+<div class="container-sm border" id="container">
+    <h1> {{ title }}</h1>
+    <h4>User Agent</h4>
+    <form class="form-horizontal" id="form" name = "form" action = "{% url 'completeAgentUpdate' %}" method = "POST">{% csrf_token %}
+        <input hidden type="text" name="agent_id" placeholder="" autocomplete="nope" value="{{ agent_id }}" />
+        <div class="col-xs-4">
+            <h6>First Name:</h6>
+            <input class="form-control" id="inputdefault" type="text" name="first_name" placeholder="" autocomplete="nope" value="{{ first_name }}" />
+            <br>
+            <h6>Last Name:</h6>
+            <input class="form-control" id="inputdefault" type="text" name="last_name" placeholder="Agent Name" autocomplete="nope" value="{{ last_name }}" /> 
+            <br>
+            <h6>Email:</h6>
+            <input class="form-control" id="inputdefault" type="text" name="email" placeholder="email" autocomplete="nope" value="{{ email }}" />
+            <br><br>
+            <input type='submit' value='Update'>
+            <br><br>
+            <a href="{% url 'homeIAM' %}">Back to index</a>
+        </div>
+    </form>
+    <br>
+</div>
+{% endblock %} 

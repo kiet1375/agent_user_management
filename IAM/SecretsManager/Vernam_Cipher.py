@@ -17,7 +17,7 @@ def generateUserId():
     return userId 
 
 
-def agentId():
+def generateAgentId():
     agentId = secrets.token_hex(64) 
     return agentId 
 

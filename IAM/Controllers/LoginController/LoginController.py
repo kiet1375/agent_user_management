@@ -1,9 +1,6 @@
-from doctest import master
-from random import getstate
-from django import forms
-import psycopg2, requests
-from django.shortcuts import render, redirect, HttpResponsePermanentRedirect,HttpResponseRedirect, HttpResponse,reverse
-from ...Models.MasterModel import MasterModel
+from django.views.decorators.csrf import csrf_protect 
+import psycopg2
+from django.shortcuts import render, redirect, HttpResponsePermanentRedirect, HttpResponse
 from ...Models.LoginModel import LoginModel
 from ...SecretsManager import Vernam_Cipher
 
@@ -21,12 +18,13 @@ class secretModel():
    secret = ""
    creation_date = ""
 
-
+@csrf_protect 
 def login(request):
    if request.session.has_key('user_id'):
-     return redirect("https://agentusermanagement.herokuapp.com/home")
+     return redirect('https://agentusermanagement.herokuapp.com/home')
    else:
       return render(request,'login.html')
+      
 
 
 def getCredentials(email):
@@ -46,7 +44,7 @@ def getCredentials(email):
          model.password = row[1]
          model.email = row[2]
          model.role_id= row[3]
-         model.isdorment = row[4]
+         model.is_dorment = row[4]
    except e:
       print("Failed to create table in MySQL: {}".format(e))
    finally:
@@ -100,8 +98,6 @@ def loginPost(request):
          secretModel = getSecret(userModel.user_id)
          array = secretModel.secret.split('#')
          T3 = list(map(int, array[:-1]))
-
-            
          de = Vernam_Cipher.encryptOrDecrypt(T3, userModel.password)
          sa = ""
          
@@ -113,7 +109,7 @@ def loginPost(request):
             request.session['state'] = 'Logg_off'
             return redirect("https://agentusermanagement.herokuapp.com/home")
          else:
-            return HttpResponsePermanentRedirect("https://agentusermanagement.herokuapp.com/?error")
+            return HttpResponsePermanentRedirect("https://agentusermanagement.herokuapp.com?error")
 
 
 def logout(request):

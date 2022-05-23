@@ -22,8 +22,8 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #04AA6D;
-    color: white;
+    background-color:#808080;
+    color: white
   }
   
   /* Style the links inside the navigation bar */
@@ -66,4 +66,35 @@
 
 body{
   padding: 5px
+}
+
+a {
+  cursor: pointer;
+  }
+
+  .link-button { 
+    background: none;
+    border: none;
+    color: #1a0dab;
+    text-decoration: underline;
+    cursor: pointer; 
+}
+
+.link-button {
+  display: inline;
+  background: none;
+  font-size: 30px;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1em;
+  font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
+  font-stretch: expanded;
+}
+.link-button:focus {
+  outline: none;
+}
+.link-button:active {
+  color:red;
 }

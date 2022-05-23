@@ -1,0 +1,24 @@
+{% extends 'masterpage.html' %}
+
+{% block head %}
+    <title>{{ title }}</title>
+{% endblock %} 
+
+{% block body %}
+<div id="container">
+    <h1> {{ title }}</h1>
+    <h4>User Agent</h4>
+    <form  id="form" name = "form" action = "{% url 'createAgent' %}" method = "POST">{% csrf_token %}
+        <h6>Email:</h6>
+        <input type="text" name="email" placeholder="email" autocomplete="nope" value="" />
+        <h6>First Name:</h6>
+        <input type="text" name="first_name" placeholder="First Name" autocomplete="nope" value="" />
+        <h6>Last Name</h6>
+        <input type="text" name="last_name" placeholder="Last Name" autocomplete="nope" value="" />
+        <br><br>
+        <input type='submit' value='Create'>
+    </form>
+    <br>
+    <a href="{% url 'homeIAM' %}">Back to index</a>
+</div>
+{% endblock %} 
